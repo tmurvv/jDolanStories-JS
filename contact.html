@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Tangerine:100,300,300i,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:100,300,300i,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <title>J--Dolan-Stories-Contact</title>
+</head>
+<body>
+    <div class="contact">
+        <div class="contact__image">
+            <img class="hardImage" src="img/JDolanStories__guitarNeckStylish.jpg" alt="Stylish man with guitar">
+            <div class="homeButton"><a href="index.html">&larr;Back</a></div>           
+            <div class="contact__text">
+                <p>J. Dolan Stories provides unique engaging musical programs and/or welcoming ambient background music for events, parties and other occasions. We can make your gathering special!</p>
+            </div>                    
+            <div class="contact__form">
+                    <div class="contact__form--title">
+                        <p>Contact Us</p>
+                    </div>
+                    
+                    <div class="contact__form--userInputs">
+                        <div class="contact__form--userInputs-item">
+                            <label for="name">Name:</label>
+                            <input id='nameInput' type="text" name='name'>
+                        </div>
+                        <div class="contact__form--userInputs-item">
+                            <label for="email">Email:</label>
+                            <input id='emailInput' type="email" name='email'>
+                        </div>
+                        <div class="contact__form--userInputs-item">
+                            <label for="phone">Phone:</label>
+                            <input id='phoneInput' type="text" name='phone' placeholder='optional'><br>
+                        </div>
+                        <label for="message">Message:</label>
+                        <textarea id='messageInput' rows="6" name="message"></textarea><br>
+                        <button id="js--sendEmail" name='sendEmail'
+                                onClick="(()=>{
+                                    const name = document.querySelector(`#nameInput`)?.value;
+                                    const email = document.querySelector(`#emailInput`)?.value;
+                                    const phone = document.querySelector(`#phoneInput`)?.value;
+                                    if (!email) {return alert('Email is required.');}
+                                    const message = String(document.querySelector(`#messageInput`)?.value);
+
+                                    const url = 'https://mail.take2tech.ca/send-mail?client=jdolanstories';
+                                    const options = {
+                                         method: 'POST',
+                                         headers: { 'Content-Type': 'application/json' },
+                                         body: JSON.stringify({ name, email, phone, message})
+                                    }
+
+                                    fetch(url, options)
+                                        .then(result => {alert('Email sent.');})
+                                        .then(()=>window.location.reload())
+                                        .catch(e=>alert(`ERROR: Email did not send. Message: ${e.message}`));
+
+                            })()" type='button'>Send
+                        </button>
+                        <button type='submit' name='submit'>Submit</button>
+                    </div>
+            </div>        
+            <div class="contact__phone">
+                <p>
+                    Or contact Ron<br>at 503-240-7144
+                </p> 
+            </div>
+        </div>           
+    </div>
+</body>
+</html>
