@@ -60,10 +60,12 @@
 
                                     fetch(url, options)
                                         .then(result => {alert('Email sent.');})
-                                        .then(()=>window.location.reload())
+                                        .then(()=>{
+                                            window.location.reload();
+                                        })
                                         .catch(e=>alert(`ERROR: Email did not send. Message: ${e.message}`));
 
-                            })()" type='button'>Send
+                            })()" type='submit'>Send
                     </button>
                 </div>
             </div>
